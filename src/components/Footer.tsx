@@ -8,7 +8,7 @@ export function Footer() {
   const paymentLabel = language === 'zh-CN' ? '支持支付方式' : language === 'ru' ? 'Поддерживаемые способы оплаты' : 'Supported payment methods'
   const maintenanceLabel = language === 'zh-CN' ? '维护中' : language === 'ru' ? 'На обслуживании' : 'Maintenance'
   const footerLinks = [
-    { to: '/privacy', label: t.nav.privacy }, { to: '/terms', label: t.nav.terms }, { to: '/support', label: t.nav.support }, { to: '/agents', label: t.nav.partners },
+    { to: '/help', label: t.nav.help }, { to: '/privacy', label: t.nav.privacy }, { to: '/terms', label: t.nav.terms }, { to: '/support', label: t.nav.support }, { to: '/agents', label: t.nav.partners },
   ]
 
   return (

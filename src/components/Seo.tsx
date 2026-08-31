@@ -17,9 +17,9 @@ export function Seo() {
   const { pathname } = useLocation()
   const { language, t } = useI18n()
   const route = pathname === '/order' ? t.order : pathname === '/support' ? t.support : pathname === '/agents' ? t.agents : pathname === '/privacy' ? t.privacy : pathname === '/terms' ? t.terms : t.home
-  const title = pathname === '/' ? `${t.home.title} | ${site.name}` : pathname === '/self-recharge' ? `${t.nav.selfRecharge} | ${site.name}` : `${route.title} | ${site.name}`
+  const title = pathname === '/' ? `${t.home.title} | ${site.name}` : pathname === '/self-recharge' ? `${t.nav.selfRecharge} | ${site.name}` : pathname === '/help' ? `${t.nav.help} | ${site.name}` : `${route.title} | ${site.name}`
   const description = pathname === '/' ? t.home.intro
-    : pathname === '/order' || pathname === '/self-recharge' ? t.order.intro
+    : pathname === '/order' || pathname === '/self-recharge' || pathname === '/help' ? t.order.intro
       : pathname === '/support' ? t.support.desc
         : pathname === '/agents' ? t.agents.desc
           : pathname === '/privacy' ? t.privacy.desc

@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { AgentsPage } from './pages/AgentsPage'
 import { HomePage } from './pages/HomePage'
+import { HelpCenterPage } from './pages/HelpCenterPage'
 import { OrderPage } from './pages/OrderPage'
 import { SelfRechargePage } from './pages/SelfRechargePage'
 import { PrivacyPage } from './pages/PrivacyPage'
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'help', element: <HelpCenterPage /> },
       { path: 'order', element: <OrderPage /> },
       { path: 'self-recharge', element: <SelfRechargePage /> },
       { path: 'privacy', element: <PrivacyPage /> },

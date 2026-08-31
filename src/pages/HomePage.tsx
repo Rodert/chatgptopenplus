@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from '../lib/i18n'
 import { ReviewSection } from '../components/ReviewSection'
+import { InfrastructureSection } from '../components/InfrastructureSection'
 
 const planOrder: CheckoutKey[] = ['plus', 'pro5x', 'pro20x']
 
@@ -111,6 +112,8 @@ export function HomePage() {
       </section>
 
       <ReviewSection />
+
+      <InfrastructureSection />
 
       <section id="plans" className="scroll-mt-24 bg-white">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">

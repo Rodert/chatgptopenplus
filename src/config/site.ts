@@ -33,7 +33,7 @@ export const site = {
   },
 
   agents: {
-    contact: 'agents@chatgptopenplus.com',
+    contact: 'support@chatgptopenplus.com',
   },
 } as const
 

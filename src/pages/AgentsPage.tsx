@@ -2,41 +2,15 @@ import { PageHero } from '../components/PageHero'
 import { site } from '../config/site'
 import { useI18n } from '../lib/i18n'
 
+const copy = {
+  'zh-CN': { title: '代理合作', desc: '面向具备稳定推广能力的渠道伙伴，提供清晰的预订、交付与售后合作机制。', summary: '10 个起即可申请代理：一次预订，按需分批开通；剩余未使用数量可按规则申请退款。', intro: '如果你拥有稳定的客户来源、社群、公众号、自媒体、技术社区或其他推广渠道，欢迎申请成为合作代理。请发送推广场景、预计用户量、合作方式及微信联系方式至官方邮箱。', rules: [['起订数量：10 个起', '首次合作需一次性预订 10 个及以上，具体代理价格根据数量和产品类型确认。'], ['支持分批开通', '预订后无需一次性使用完毕，可根据实际客户需求分批安排交付。'], ['库存长期保留', '已预订但暂未使用的数量可继续保留，后续有客户需求时再安排开通。'], ['未使用支持退款', '如后续不再继续合作，剩余未使用、未交付的数量可申请退款，按实际未使用数量结算。'], ['适用推广场景', '包括私域社群、公众号、自媒体、技术交流群、企业客户、工作室及线下客户等。']], apply: '如何申请', subject: '代理合作申请 + 姓名/团队名称', fields: ['推广场景', '预计每月客户数量', '主要推广平台或渠道', '计划代理的产品', '微信联系方式'], after: '审核通过后，我们将通过微信沟通代理价格、预订数量、分批开通方式及售后规则。', send: '发送代理申请' },
+  en: { title: 'Partner program', desc: 'A clear preorder, fulfillment, and support framework for partners with reliable promotion channels.', summary: 'Apply from 10 units: preorder once, activate in batches as needed, and request a refund for unused units under the applicable rules.', intro: 'If you have stable customer sources, communities, public accounts, creator media, technical communities, or other promotion channels, you are welcome to apply. Email your promotion scenario, expected volume, collaboration model, and WeChat contact details.', rules: [['Minimum order: 10 units', 'The first cooperation requires a preorder of 10 or more units. Pricing is confirmed by quantity and product type.'], ['Batch activation', 'Preordered units can be delivered in batches as customer demand arises.'], ['Long-term balance retention', 'Unused preordered units remain available for future customer requests.'], ['Refunds for unused units', 'Unused and undelivered units may be submitted for refund, settled by the actual unused quantity.'], ['Suitable promotion channels', 'Private communities, public accounts, creator media, technical groups, enterprise customers, studios, and offline customers.']], apply: 'How to apply', subject: 'Partner application + name/team name', fields: ['Promotion scenario', 'Expected monthly customer volume', 'Primary platforms or channels', 'Products you plan to represent', 'WeChat contact details'], after: 'After approval, we will discuss pricing, preorder volume, batch activation, and support rules through WeChat.', send: 'Send partner application' },
+  ru: { title: 'Партнерская программа', desc: 'Понятные правила предзаказа, выполнения и поддержки для партнеров со стабильными каналами продвижения.', summary: 'Заявка доступна от 10 единиц: один предзаказ, активация частями по мере необходимости и возврат неиспользованных единиц по правилам.', intro: 'Если у вас есть стабильный поток клиентов, сообщества, медиа, технические сообщества или другие каналы продвижения, подайте заявку. Укажите в письме сценарий продвижения, ожидаемый объем, модель сотрудничества и контакт WeChat.', rules: [['Минимальный заказ: 10 единиц', 'Первое сотрудничество требует предзаказа 10 и более единиц. Цена подтверждается по количеству и типу продукта.'], ['Активация частями', 'Предзаказанные единицы можно активировать по частям по мере спроса.'], ['Долгосрочное хранение баланса', 'Неиспользованные единицы сохраняются для будущих запросов клиентов.'], ['Возврат неиспользованных единиц', 'Неиспользованные и непереданные единицы можно подать на возврат по фактическому остатку.'], ['Подходящие каналы', 'Частные сообщества, медиа, технические группы, корпоративные клиенты, студии и офлайн-клиенты.']], apply: 'Как подать заявку', subject: 'Заявка на партнерство + имя/команда', fields: ['Сценарий продвижения', 'Ожидаемое число клиентов в месяц', 'Основные платформы или каналы', 'Продукты для партнерства', 'Контакт WeChat'], after: 'После одобрения обсудим цены, объем предзаказа, активацию частями и правила поддержки через WeChat.', send: 'Отправить заявку' },
+} as const
+
 export function AgentsPage() {
-  const { t } = useI18n()
-  const agents = t.agents
-  return (
-    <>
-      <PageHero
-        title={agents.title}
-        description={agents.desc}
-      />
-      <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
-        <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
-          {agents.perks.map((perk) => (
-            <div key={perk[0]}>
-              <h2 className="font-display text-base font-semibold text-ink">{perk[0]}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{perk[1]}</p>
-            </div>
-          ))}
-        </div>
-
-        <section className="mt-14 border-t border-line pt-12">
-          <h2 className="font-display text-xl font-semibold text-ink">{agents.apply}</h2>
-          <ol className="mt-5 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-muted">
-            {agents.applySteps.map((step) => <li key={step}>{step}</li>)}
-          </ol>
-
-          <a
-            href={`mailto:${site.agents.contact}?subject=${encodeURIComponent('代理合作申请')}`}
-            className="mt-8 inline-flex bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-deep"
-          >
-            {agents.send}
-          </a>
-
-          <p className="mt-5 text-sm text-muted">{site.agents.contact}</p>
-        </section>
-      </div>
-    </>
-  )
+  const { language } = useI18n()
+  const text = copy[language]
+  const subject = encodeURIComponent(text.subject)
+  return <><PageHero title={text.title} description={text.desc} /><section className="border-b border-mint-line bg-mint/45"><div className="mx-auto max-w-6xl px-5 py-10 sm:px-8"><p className="max-w-4xl font-display text-xl font-semibold leading-relaxed text-ink sm:text-2xl">{text.summary}</p></div></section><div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20"><p className="max-w-3xl text-sm leading-7 text-muted">{text.intro}</p><section className="mt-14"><h2 className="font-display text-2xl font-semibold text-ink">{language === 'zh-CN' ? '合作规则' : language === 'ru' ? 'Правила партнерства' : 'Partnership rules'}</h2><div className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">{text.rules.map(([title, description], index) => <article key={title} className="border-t border-line pt-5"><p className="text-xs font-semibold tracking-[0.16em] text-brand">{String(index + 1).padStart(2, '0')}</p><h3 className="mt-3 text-lg font-semibold text-ink">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted">{description}</p></article>)}</div></section><section className="mt-16 border-t border-line pt-12"><h2 className="font-display text-2xl font-semibold text-ink">{text.apply}</h2><div className="mt-7 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]"><div className="border-l-2 border-brand pl-5"><p className="text-xs font-semibold tracking-[0.16em] text-brand">EMAIL SUBJECT</p><p className="mt-3 text-sm font-semibold text-ink">{text.subject}</p><a href={`mailto:${site.agents.contact}?subject=${subject}`} className="mt-5 inline-block text-sm font-semibold text-brand">{site.agents.contact}</a></div><ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-muted">{text.fields.map((field) => <li key={field}>{field}</li>)}</ol></div><p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted">{text.after}</p><a href={`mailto:${site.agents.contact}?subject=${subject}`} className="mt-8 inline-flex rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-deep">{text.send}</a></section></div></>
 }

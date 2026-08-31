@@ -1,4 +1,4 @@
-# ChatGPTOpenPlus
+# ChatGPT * OpenPlus
 
 营销站前端（第一版）：展示套餐并跳转外部支付站。域名：[chatgptopenplus.com](https://chatgptopenplus.com)
 

@@ -1,6 +1,6 @@
 /** Site config */
 export const site = {
-  name: 'ChatGPTOpenPlus',
+  name: 'ChatGPT * OpenPlus',
   domain: 'chatgptopenplus.com',
   tagline: 'ChatGPT 订阅代充服务',
   description:

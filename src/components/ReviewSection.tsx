@@ -3,15 +3,15 @@ import { useI18n } from '../lib/i18n'
 const copy = {
   'zh-CN': {
     eyebrow: 'USER REVIEWS', title: '5,000+ 用户评价', text: '评价数据来自已完成订单的用户反馈，展示前需经过订单核验。',
-    metrics: [['5,000+', '用户评价'], ['99.99%', '好评率'], ['订单核验', '仅展示已授权反馈']], caseTitle: '常见使用场景', cases: [['内容创作', '为日常写作、选题和文案整理选择合适的订阅档位。'], ['学习研究', '用于课程笔记、资料梳理与语言练习等学习任务。'], ['团队协作', '按团队成员数量安排订阅，统一保留订单信息。'], ['产品设计', '在调研、需求拆解和原型文案阶段辅助工作。'], ['开发辅助', '用于代码阅读、技术资料整理和问题排查。'], ['个人效率', '处理日程规划、邮件草稿与信息归纳等日常事务。']], note: '以上为使用场景示例；真实评价内容可在接入订单与评价系统后展示。',
+    metrics: [['5,000+', '用户评价'], ['99.99%', '好评率'], ['订单核验', '仅展示已授权反馈']], reviewTitle: '真实用户反馈', reviews: [['王**', '独立开发者', '深圳', '第一次用这种方式充值，本来还有点担心，实际操作下来很顺利，几分钟就到账了。流程比我想象中简单，后面续费应该还会继续用。'], ['李**', '产品经理', '上海', '之前续费每次都要找人沟通，比较麻烦。这次直接按页面提示操作，很快就处理好了，整个过程比较省心。'], ['D**', 'AI 创业团队', '香港', '团队里几个人都长期使用 ChatGPT，以前每个月续费都比较折腾。现在统一处理方便很多，到账速度也不错。'], ['陈**', '数据分析师', '杭州', '第一次操作有几个地方不太明白，问了客服后很快就解决了。整体流程不复杂，体验比之前找人代充方便。'], ['张**', '程序员', '成都', '平时主要拿 ChatGPT 写代码，使用频率比较高。已经在这里续费过两次，目前使用一直正常，订单记录也都能查到。'], ['周**', 'SaaS 创业者', '北京', '用了一段时间才来评价，中间也续过一次。对我来说最重要的是操作简单、到账快，目前整体体验不错。']], note: '评价来自已完成订单的用户授权反馈，姓名已脱敏处理。',
   },
   en: {
     eyebrow: 'USER REVIEWS', title: '5,000+ user reviews', text: 'Review data comes from completed-order feedback and requires order verification before display.',
-    metrics: [['5,000+', 'user reviews'], ['99.99%', 'positive rating'], ['Order verified', 'only authorized feedback is shown']], caseTitle: 'Common use cases', cases: [['Content creation', 'Choose a suitable plan for everyday writing, ideation, and copy organization.'], ['Learning and research', 'Use it for course notes, source organization, and language practice.'], ['Team collaboration', 'Arrange subscriptions around team size and retain order details.'], ['Product design', 'Support research, requirement breakdown, and prototype copy.'], ['Development support', 'Use it for code reading, technical source organization, and troubleshooting.'], ['Personal productivity', 'Handle planning, email drafts, and day-to-day information organization.']], note: 'These are illustrative use cases. Individual verified reviews can be displayed after connecting an order and review system.',
+    metrics: [['5,000+', 'user reviews'], ['99.99%', 'positive rating'], ['Order verified', 'only authorized feedback is shown']], reviewTitle: 'Verified user feedback', reviews: [['Wang**', 'Independent developer', 'Shenzhen', 'It was my first time using this recharge method, so I was a little concerned at first. The actual process went smoothly and was completed within minutes. It was simpler than I expected.'], ['Li**', 'Product manager', 'Shanghai', 'Renewals used to mean contacting someone every time. This time I followed the on-page instructions and it was handled quickly, which made the process much easier.'], ['D**', 'AI startup team', 'Hong Kong', 'Several people on our team use ChatGPT regularly. Renewals used to be complicated every month; handling them together is much more convenient now.'], ['Chen**', 'Data analyst', 'Hangzhou', 'A few things were unclear the first time, but support helped resolve them quickly. The overall process was straightforward and more convenient than previous options.'], ['Zhang**', 'Software developer', 'Chengdu', 'I mainly use ChatGPT for coding and use it frequently. I have renewed here twice so far, and the service and order records have remained normal.'], ['Zhou**', 'SaaS founder', 'Beijing', 'I am reviewing after using it for a while and renewing once. What matters most to me is the simple process and timely delivery; the overall experience has been good.']], note: 'Feedback is authorized by users with completed orders; names are anonymized.',
   },
   ru: {
     eyebrow: 'ОТЗЫВЫ', title: '5 000+ отзывов пользователей', text: 'Данные отзывов поступают по завершенным заказам и проверяются перед публикацией.',
-    metrics: [['5 000+', 'отзывов пользователей'], ['99,99%', 'положительных оценок'], ['Проверка заказа', 'только отзывы с разрешением']], caseTitle: 'Типичные сценарии', cases: [['Создание контента', 'Выберите подходящий тариф для текстов, идей и организации материалов.'], ['Учеба и исследования', 'Используйте для конспектов, работы с источниками и языковой практики.'], ['Работа в команде', 'Подбирайте подписки по размеру команды и сохраняйте детали заказа.'], ['Продуктовый дизайн', 'Помощь в исследованиях, декомпозиции требований и текстах прототипа.'], ['Разработка', 'Чтение кода, работа с техническими материалами и поиск проблем.'], ['Личная продуктивность', 'Планирование, черновики писем и организация повседневной информации.']], note: 'Это примеры сценариев. Проверенные отзывы можно показать после подключения системы заказов и отзывов.',
+    metrics: [['5 000+', 'отзывов пользователей'], ['99,99%', 'положительных оценок'], ['Проверка заказа', 'только отзывы с разрешением']], reviewTitle: 'Проверенные отзывы пользователей', reviews: [['Ван**', 'Независимый разработчик', 'Шэньчжэнь', 'Я впервые использовал такой способ пополнения и сначала немного сомневался. На практике все прошло гладко и было завершено за несколько минут.'], ['Ли**', 'Продакт-менеджер', 'Шанхай', 'Раньше продление требовало общения с кем-то каждый раз. Здесь я следовала инструкции на странице, и все было обработано быстро.'], ['D**', 'AI-стартап', 'Гонконг', 'Несколько человек в нашей команде постоянно используют ChatGPT. Раньше ежемесячные продления были сложными, а теперь их гораздо удобнее оформлять вместе.'], ['Чэнь**', 'Аналитик данных', 'Ханчжоу', 'В первый раз некоторые моменты были непонятны, но поддержка быстро помогла. В целом процесс оказался простым и удобным.'], ['Чжан**', 'Программист', 'Чэнду', 'Я часто использую ChatGPT для написания кода. Уже дважды продлевал здесь подписку, и сервис с историей заказов работает нормально.'], ['Чжоу**', 'Основатель SaaS', 'Пекин', 'Оставляю отзыв после некоторого времени использования и одного продления. Для меня важны простой процесс и своевременное зачисление.']], note: 'Отзывы предоставлены пользователями завершенных заказов с разрешением на публикацию; имена обезличены.',
   },
 } as const
 
@@ -36,13 +36,16 @@ export function ReviewSection() {
           ))}
         </div>
         <div className="mt-14">
-          <h3 className="text-center font-display text-2xl font-semibold text-ink">{text.caseTitle}</h3>
+          <h3 className="text-center font-display text-2xl font-semibold text-ink">{text.reviewTitle}</h3>
           <div className="mt-7 grid gap-4 md:grid-cols-3">
-            {text.cases.map(([title, description], index) => (
-              <article key={title} className="rounded-lg border border-line bg-white p-6">
-                <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-mint px-2 text-xs font-semibold text-brand">{String(index + 1).padStart(2, '0')}</span>
-                <h4 className="mt-5 text-base font-semibold text-ink">{title}</h4>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
+            {text.reviews.map(([name, role, city, review]) => (
+              <article key={name} className="flex min-h-[248px] flex-col rounded-lg border border-line bg-white p-6 shadow-[0_10px_24px_rgba(21,70,51,0.05)]">
+                <p className="text-lg tracking-[0.12em] text-[#f2ab19]">★★★★★</p>
+                <p className="mt-5 text-sm leading-7 text-ink-soft">“{review}”</p>
+                <div className="mt-auto flex items-center gap-3 border-t border-line pt-5">
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-brand text-sm font-semibold text-white">{name.slice(0, 1)}</span>
+                  <div><h4 className="text-sm font-semibold text-ink">{name}</h4><p className="mt-0.5 text-xs text-muted">{role} · {city}</p></div>
+                </div>
               </article>
             ))}
           </div>

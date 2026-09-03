@@ -1,5 +1,4 @@
 import { site, type CheckoutKey } from '../config/site'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from '../lib/i18n'
 import { ReviewSection } from '../components/ReviewSection'
@@ -7,41 +6,10 @@ import { InfrastructureSection } from '../components/InfrastructureSection'
 
 const planOrder: CheckoutKey[] = ['plus', 'pro5x', 'pro20x']
 
-function currentSubscriberTarget() {
-  const now = new Date()
-  return 13146 + now.getDate() * 10 + now.getHours()
-}
-
 export function HomePage() {
-  const { language, t } = useI18n()
+  const { t } = useI18n()
   const home = t.home
-  const [subscriberCount, setSubscriberCount] = useState(0)
 
-  useEffect(() => {
-    const target = currentSubscriberTarget()
-    const duration = 1500
-    const startedAt = performance.now()
-    let animationFrame = 0
-
-    const animate = (now: number) => {
-      const progress = Math.min((now - startedAt) / duration, 1)
-      setSubscriberCount(Math.floor(target * (1 - (1 - progress) ** 3)))
-      if (progress < 1) animationFrame = requestAnimationFrame(animate)
-    }
-
-    animationFrame = requestAnimationFrame(animate)
-    const refreshTimer = window.setInterval(() => setSubscriberCount(currentSubscriberTarget()), 60_000)
-    return () => {
-      cancelAnimationFrame(animationFrame)
-      window.clearInterval(refreshTimer)
-    }
-  }, [])
-
-  const subscriberLabel = language === 'zh-CN'
-    ? `已服务 ${subscriberCount.toLocaleString()}+ 人 · 好评率 99.99%`
-    : language === 'ru'
-      ? `${subscriberCount.toLocaleString()}+ клиентов · 99,99% положительных отзывов`
-      : `${subscriberCount.toLocaleString()}+ customers served · 99.99% positive`
   return (
     <>
       <section className="border-b border-mint-line bg-mint">
@@ -52,7 +20,7 @@ export function HomePage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
               </span>
-              {subscriberLabel}
+              {home.badge}
             </p>
             <h1 className="fade-up-delay mt-6 font-display text-4xl font-semibold leading-[1.12] text-ink sm:text-5xl lg:text-[3.6rem]">
               {home.title}
@@ -75,6 +43,17 @@ export function HomePage() {
                 {home.viewPlans}
               </Link>
             </div>
+            <dl className="fade-up-delay-2 mt-9 grid gap-x-6 gap-y-5 border-t border-mint-line pt-6 sm:grid-cols-2">
+              {home.assurances.map(([term, description]) => (
+                <div key={term} className="flex gap-3">
+                  <span className="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-brand/10 text-[10px] font-bold text-brand" aria-hidden>✓</span>
+                  <div>
+                    <dt className="text-sm font-semibold text-ink">{term}</dt>
+                    <dd className="mt-0.5 text-xs leading-5 text-muted">{description}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <div className="hero-panel relative rounded-lg border border-mint-line bg-white p-7 shadow-[0_18px_45px_rgba(21,70,51,0.10)] sm:p-9">

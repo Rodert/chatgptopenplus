@@ -1,4 +1,5 @@
 import { site, type CheckoutKey } from '../config/site'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from '../lib/i18n'
 import { ReviewSection } from '../components/ReviewSection'
@@ -6,9 +7,41 @@ import { InfrastructureSection } from '../components/InfrastructureSection'
 
 const planOrder: CheckoutKey[] = ['plus', 'pro5x', 'pro20x']
 
+function currentSubscriberTarget() {
+  const now = new Date()
+  return 13146 + now.getDate() * 10 + now.getHours()
+}
+
 export function HomePage() {
-  const { t } = useI18n()
+  const { language, t } = useI18n()
   const home = t.home
+  const [subscriberCount, setSubscriberCount] = useState(0)
+
+  useEffect(() => {
+    const target = currentSubscriberTarget()
+    const duration = 1500
+    const startedAt = performance.now()
+    let animationFrame = 0
+
+    const animate = (now: number) => {
+      const progress = Math.min((now - startedAt) / duration, 1)
+      setSubscriberCount(Math.floor(target * (1 - (1 - progress) ** 3)))
+      if (progress < 1) animationFrame = requestAnimationFrame(animate)
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+    const refreshTimer = window.setInterval(() => setSubscriberCount(currentSubscriberTarget()), 60_000)
+    return () => {
+      cancelAnimationFrame(animationFrame)
+      window.clearInterval(refreshTimer)
+    }
+  }, [])
+
+  const subscriberLabel = language === 'zh-CN'
+    ? `已服务 ${subscriberCount.toLocaleString()}+ 人 · 好评率 99.99%`
+    : language === 'ru'
+      ? `${subscriberCount.toLocaleString()}+ клиентов · 99,99% положительных отзывов`
+      : `${subscriberCount.toLocaleString()}+ customers served · 99.99% positive`
 
   return (
     <>
@@ -20,7 +53,7 @@ export function HomePage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
               </span>
-              {home.badge}
+              {subscriberLabel}
             </p>
             <h1 className="fade-up-delay mt-6 font-display text-4xl font-semibold leading-[1.12] text-ink sm:text-5xl lg:text-[3.6rem]">
               {home.title}

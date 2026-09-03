@@ -11,19 +11,19 @@ export const site = {
       label: 'ChatGPT Plus',
       subtitle: '标准订阅 · 质保 30 天',
       priceLabel: '¥145',
-      url: 'https://pay.ldxp.cn/item/mfu1l8',
+      url: 'https://wzyp.cn/item/mfu1l8',
     },
     pro5x: {
       label: 'ChatGPT Pro 5x',
       subtitle: '更高额度 · 质保 30 天',
       priceLabel: '¥750',
-      url: 'https://pay.ldxp.cn/item/cjmxxw',
+      url: 'https://wzyp.cn/item/1t7aee',
     },
     pro20x: {
       label: 'ChatGPT Pro 20x',
       subtitle: '旗舰额度 · 质保 30 天',
       priceLabel: '¥1450',
-      url: 'https://pay.ldxp.cn/item/1t7aee',
+      url: 'https://wzyp.cn/item/cjmxxw',
     },
   },
 

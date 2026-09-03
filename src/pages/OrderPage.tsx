@@ -30,7 +30,7 @@ export function OrderPage() {
 
   return (
     <section className="min-h-[calc(100dvh-4.25rem)] bg-mint/45">
-      <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-5xl px-5 pb-32 pt-14 sm:px-8 sm:pb-36 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-white px-3 py-1 text-xs font-semibold text-brand">
             <span className="h-2 w-2 rounded-full bg-brand" aria-hidden /> {order.badge}
@@ -122,6 +122,15 @@ export function OrderPage() {
           </section>
         </div>
         <div className="mt-7 text-center"><Link to="/" className="text-sm font-medium text-muted transition hover:text-brand">{t.common.backHome}</Link></div>
+      </div>
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3 sm:px-8 sm:py-4">
+          <div className="min-w-0">
+            <p className="truncate text-xs text-muted sm:text-sm">{plan.label} × {quantity}</p>
+            <p className="mt-0.5 font-display text-2xl font-semibold text-brand sm:text-3xl">¥{total}</p>
+          </div>
+          <button type="button" onClick={() => openCheckout(selectedPlan)} className="shrink-0 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(12,166,111,0.22)] transition hover:bg-brand-deep sm:px-8 sm:py-3.5">{order.begin}</button>
+        </div>
       </div>
     </section>
   )

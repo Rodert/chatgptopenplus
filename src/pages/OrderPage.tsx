@@ -55,8 +55,8 @@ export function OrderPage() {
                     type="button"
                     aria-pressed={selected}
                     onClick={() => setSelectedPlan(key)}
-                    className={`min-h-[148px] rounded-lg border p-5 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
-                      selected ? 'border-brand bg-mint shadow-[inset_0_0_0_1px_var(--color-brand)]' : 'border-line bg-white hover:border-brand/50'
+                    className={`min-h-[148px] rounded-lg border p-5 text-left transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+                      selected ? 'border-brand bg-mint shadow-[inset_0_0_0_1px_var(--color-brand)]' : 'border-line bg-white hover:-translate-y-0.5 hover:border-brand/60 hover:bg-mint/45 hover:shadow-[0_10px_24px_rgba(21,70,51,0.08)]'
                     }`}
                   >
                     <p className="font-display text-base font-semibold text-ink">{item.label}</p>
@@ -90,8 +90,15 @@ export function OrderPage() {
               <h2 className="text-base font-semibold text-ink">{order.payments}</h2>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {paymentMethods.map((method) => (
-                  <div key={method.name} className="flex items-center gap-3 rounded-lg border border-line bg-white px-4 py-3">
-                    <img src={method.icon} alt="" className="h-7 w-7 shrink-0" />
+                  <div
+                    key={method.name}
+                    className={`flex items-center gap-3 rounded-lg border px-4 py-3 transition duration-200 ${
+                      method.maintenance
+                        ? 'border-line bg-white opacity-65'
+                        : 'group cursor-default border-line bg-white hover:-translate-y-0.5 hover:border-brand/60 hover:bg-mint/65 hover:shadow-[0_10px_22px_rgba(21,70,51,0.10)]'
+                    }`}
+                  >
+                    <img src={method.icon} alt="" className={`h-7 w-7 shrink-0 transition duration-200 ${method.maintenance ? '' : 'group-hover:scale-110'}`} />
                     <span className="text-sm font-semibold text-ink">{method.name}</span>
                     {method.maintenance ? <span className="rounded-full border border-[#f4ca69] bg-[#fff9e9] px-2 py-0.5 text-[11px] font-semibold text-[#a86500]">{maintenanceLabel}</span> : null}
                   </div>

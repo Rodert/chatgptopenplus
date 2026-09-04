@@ -22,6 +22,7 @@ export function Header() {
           <nav className="hidden items-center gap-6 md:flex">
             <NavLink to="/order" className="text-[13px] font-medium text-muted transition hover:text-ink">{t.nav.purchase}</NavLink>
             <NavLink to="/self-recharge" className="text-[13px] font-medium text-muted transition hover:text-ink">{t.nav.selfRecharge}</NavLink>
+            <NavLink to="/blog" className="text-[13px] font-medium text-muted transition hover:text-ink">{t.nav.blog}</NavLink>
           </nav>
           <label className="sr-only" htmlFor="language-select">Language</label>
           <select id="language-select" value={language} onChange={(event) => setLanguage(event.target.value as typeof language)} className="hidden h-9 border-0 bg-transparent text-[13px] font-medium text-muted outline-none md:block">
@@ -55,7 +56,7 @@ export function Header() {
             <NavLink to="/order" className="py-2.5 text-sm text-ink-soft" onClick={() => setOpen(false)}>
               {t.nav.purchase}
             </NavLink>
-            {[{ to: '/claude', label: t.nav.claude, end: false }, { to: '/self-recharge', label: t.nav.selfRecharge, end: false }, { to: '/', label: site.name, end: true }, { to: '/agents', label: t.nav.partners, end: false }, { to: '/support', label: t.nav.support, end: false }, { to: '/privacy', label: t.nav.privacy, end: false }, { to: '/terms', label: t.nav.terms, end: false }].map(
+            {[{ to: '/claude', label: t.nav.claude, end: false }, { to: '/blog', label: t.nav.blog, end: false }, { to: '/self-recharge', label: t.nav.selfRecharge, end: false }, { to: '/', label: site.name, end: true }, { to: '/agents', label: t.nav.partners, end: false }, { to: '/support', label: t.nav.support, end: false }, { to: '/privacy', label: t.nav.privacy, end: false }, { to: '/terms', label: t.nav.terms, end: false }].map(
               (link) => (
                 <NavLink
                   key={link.to}

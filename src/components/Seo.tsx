@@ -18,6 +18,8 @@ export function Seo() {
   const { language, t } = useI18n()
   const isBlog = pathname === '/blog'
   const isBlogArticle = pathname === '/blog/chatgpt-plus-worth-it'
+  const isBlogContent = isBlog || isBlogArticle
+  const socialImage = `https://${site.domain}/og-image.png`
   const route = pathname === '/order' ? t.order : pathname === '/support' ? t.support : pathname === '/agents' ? t.agents : pathname === '/privacy' ? t.privacy : pathname === '/terms' ? t.terms : t.home
   const title = isBlogArticle ? `ChatGPT Plus 到底值不值得开？免费版、Plus 与 API 的区别 | ${site.name}`
     : isBlog ? `ChatGPT 使用指南与订阅说明 | ${site.name}`
@@ -31,7 +33,7 @@ export function Seo() {
           : pathname === '/privacy' ? t.privacy.desc
             : t.terms.desc
   const canonicalPath = `https://${site.domain}${pathname === '/' ? '/' : pathname}`
-  const canonical = isBlogArticle ? canonicalPath : `${canonicalPath}${language === 'zh-CN' ? '' : `?lang=${language}`}`
+  const canonical = isBlogContent ? canonicalPath : `${canonicalPath}${language === 'zh-CN' ? '' : `?lang=${language}`}`
 
   useEffect(() => {
     document.title = title
@@ -40,8 +42,14 @@ export function Seo() {
     setMeta('meta[property="og:description"]', 'property', 'og:description', description)
     setMeta('meta[property="og:url"]', 'property', 'og:url', canonical)
     setMeta('meta[property="og:type"]', 'property', 'og:type', isBlogArticle ? 'article' : 'website')
+    setMeta('meta[property="og:image"]', 'property', 'og:image', socialImage)
+    setMeta('meta[property="og:image:width"]', 'property', 'og:image:width', '1200')
+    setMeta('meta[property="og:image:height"]', 'property', 'og:image:height', '630')
+    setMeta('meta[property="og:locale"]', 'property', 'og:locale', language === 'zh-CN' ? 'zh_CN' : language)
     setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title)
     setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description)
+    setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', socialImage)
+    setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image')
 
     const publishedTime = document.head.querySelector<HTMLMetaElement>('meta[property="article:published_time"]')
     if (isBlogArticle) setMeta('meta[property="article:published_time"]', 'property', 'article:published_time', '2026-09-04')
@@ -52,7 +60,7 @@ export function Seo() {
     canonicalLink.href = canonical
 
     document.head.querySelectorAll('link[data-hreflang]').forEach((link) => link.remove())
-    if (!isBlogArticle) {
+    if (!isBlogContent) {
       languageOptions.forEach((option) => {
         const link = document.createElement('link')
         link.rel = 'alternate'
@@ -74,12 +82,13 @@ export function Seo() {
           datePublished: '2026-09-04',
           dateModified: '2026-09-04',
           mainEntityOfPage: canonical,
+          image: socialImage,
           author: { '@type': 'Organization', name: site.name },
           publisher: { '@type': 'Organization', name: site.name },
           inLanguage: 'zh-CN',
         }
       : { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: canonical, inLanguage: language })
-  }, [canonical, canonicalPath, description, isBlogArticle, language, title])
+  }, [canonical, canonicalPath, description, isBlogArticle, isBlogContent, language, socialImage, title])
 
   return null
 }

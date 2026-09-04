@@ -27,6 +27,13 @@ export const site = {
     },
   },
 
+  claude: {
+    pro: {
+      label: 'Claude Pro',
+      url: 'https://wzyp.cn/item/195ckl',
+    },
+  },
+
   support: {
     email: 'support@chatgptopenplus.com',
     hours: '工作日与周末均受理 · 通常 24 小时内回复',

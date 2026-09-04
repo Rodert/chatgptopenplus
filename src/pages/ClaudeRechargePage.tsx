@@ -1,47 +1,51 @@
 import { useI18n } from '../lib/i18n'
+import { site } from '../config/site'
 
 const copy = {
   'zh-CN': {
     badge: 'CLAUDE RECHARGE',
     title: 'Claude 充值',
-    accent: '独立入口，即将开放',
-    intro: 'Claude 充值使用独立页面和独立流程，不与 ChatGPT 订单混合。具体商品与充值入口将在配置完成后显示。',
+    accent: '独立入口，现已开放',
+    intro: 'Claude 充值使用独立页面和独立流程，不与 ChatGPT 订单混合。选择 Claude Pro 后将在合作支付页完成下单。',
     panelLabel: 'CLAUDE',
     panelTitle: '为专注创作准备',
     panelText: '选择适合你的 Claude 订阅方案。',
     sectionLabel: 'RECHARGE OPTIONS',
     sectionTitle: 'Claude 充值入口',
-    sectionText: '充值链接正在配置中。稍后可在此直接选择对应方案并完成下单。',
-    pending: '充值入口待配置',
-    notes: [['独立充值页面', 'Claude 商品、价格与交付说明将单独展示。'], ['清晰选择', '配置完成后可按方案直接进入对应的支付页面。'], ['订单支持', '下单后请保留订单信息，便于后续核查。']],
+    sectionText: '选择 Claude Pro 后，将在合作支付页完成订单。实际价格与可用支付方式以该页面展示为准。',
+    productText: '适合需要更高使用额度与更完整 Claude 使用体验的用户。',
+    productAction: '开始 Claude Pro 充值',
+    notes: [['独立充值页面', 'Claude 商品、价格与交付说明单独展示。'], ['合作支付', '点击后在合作支付页完成订单。'], ['订单支持', '下单后请保留订单信息，便于后续核查。']],
   },
   en: {
     badge: 'CLAUDE RECHARGE',
     title: 'Claude recharge',
-    accent: 'A dedicated entry, coming soon',
-    intro: 'Claude recharge has its own page and flow, separate from ChatGPT orders. Products and recharge links will appear once configured.',
+    accent: 'A dedicated entry, now open',
+    intro: 'Claude recharge has its own page and flow, separate from ChatGPT orders. Select Claude Pro to continue to the partner checkout.',
     panelLabel: 'CLAUDE',
     panelTitle: 'Made for focused work',
     panelText: 'Choose the Claude plan that fits your work.',
     sectionLabel: 'RECHARGE OPTIONS',
     sectionTitle: 'Claude recharge entry',
-    sectionText: 'Recharge links are being configured. You will be able to select the right plan and continue to checkout here.',
-    pending: 'Recharge entry being configured',
-    notes: [['A dedicated page', 'Claude products, pricing, and fulfillment details are presented separately.'], ['Clear selection', 'Once configured, each plan will lead directly to its checkout page.'], ['Order support', 'Keep your order information for any follow-up review.']],
+    sectionText: 'Select Claude Pro to continue to the partner checkout. Final pricing and available payment methods are shown there.',
+    productText: 'For users who need higher usage limits and a fuller Claude experience.',
+    productAction: 'Recharge Claude Pro',
+    notes: [['A dedicated page', 'Claude products, pricing, and fulfillment details are presented separately.'], ['Partner checkout', 'Complete your order on the partner checkout after continuing.'], ['Order support', 'Keep your order information for any follow-up review.']],
   },
   ru: {
     badge: 'ПОПОЛНЕНИЕ CLAUDE',
     title: 'Пополнение Claude',
-    accent: 'Отдельный вход, скоро будет доступен',
-    intro: 'Для Claude создана отдельная страница и процесс, не смешанный с заказами ChatGPT. Товары и ссылки появятся после настройки.',
+    accent: 'Отдельный вход уже доступен',
+    intro: 'Для Claude создана отдельная страница и процесс, не смешанный с заказами ChatGPT. Выберите Claude Pro, чтобы перейти к оплате у партнера.',
     panelLabel: 'CLAUDE',
     panelTitle: 'Для сосредоточенной работы',
     panelText: 'Выберите подходящий тариф Claude.',
     sectionLabel: 'ВАРИАНТЫ ПОПОЛНЕНИЯ',
     sectionTitle: 'Вход для пополнения Claude',
-    sectionText: 'Ссылки на пополнение настраиваются. Здесь можно будет выбрать тариф и перейти к оплате.',
-    pending: 'Вход для пополнения настраивается',
-    notes: [['Отдельная страница', 'Товары Claude, цены и условия выполнения показаны отдельно.'], ['Понятный выбор', 'После настройки каждый тариф будет вести на свою страницу оплаты.'], ['Поддержка заказа', 'Сохраните данные заказа для последующей проверки.']],
+    sectionText: 'Выберите Claude Pro, чтобы перейти к оплате у партнера. Итоговая цена и доступные способы оплаты указаны там.',
+    productText: 'Для пользователей, которым нужны более высокие лимиты и полный доступ к Claude.',
+    productAction: 'Пополнить Claude Pro',
+    notes: [['Отдельная страница', 'Товары Claude, цены и условия выполнения показаны отдельно.'], ['Оплата у партнера', 'После перехода заказ оформляется на странице партнера.'], ['Поддержка заказа', 'Сохраните данные заказа для последующей проверки.']],
   },
 } as const
 
@@ -89,8 +93,12 @@ export function ClaudeRechargePage() {
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#6f5d56]">{text.sectionText}</p>
             </div>
           </div>
-          <div className="mt-10 flex min-h-40 items-center justify-center rounded-lg border border-dashed border-[#e5ae9d] bg-[#fff7f3] px-6 text-center">
-            <p className="text-sm font-semibold text-[#b85138]">{text.pending}</p>
+          <div className="mt-10 flex min-h-40 flex-col items-start justify-between gap-6 rounded-lg border border-[#e5ae9d] bg-[#fff7f3] p-7 sm:flex-row sm:items-end sm:p-9">
+            <div>
+              <p className="font-display text-2xl font-semibold text-[#2c2522]">{site.claude.pro.label}</p>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#6f5d56]">{text.productText}</p>
+            </div>
+            <a href={site.claude.pro.url} target="_blank" rel="noreferrer" className="shrink-0 rounded-lg bg-[#df7153] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#c9573a]">{text.productAction}</a>
           </div>
         </div>
       </section>

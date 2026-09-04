@@ -28,10 +28,10 @@ export function Header() {
             {languageOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
           </select>
           <NavLink
-            to="/order"
-            className="rounded-lg bg-brand px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-brand-deep md:hidden"
+            to="/claude"
+            className="rounded-lg bg-[#df7153] px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-[#c9573a]"
           >
-            {t.nav.purchase}
+            {t.nav.claude}
           </NavLink>
           <button
             type="button"
@@ -55,7 +55,7 @@ export function Header() {
             <NavLink to="/order" className="py-2.5 text-sm text-ink-soft" onClick={() => setOpen(false)}>
               {t.nav.purchase}
             </NavLink>
-            {[{ to: '/self-recharge', label: t.nav.selfRecharge, end: false }, { to: '/', label: site.name, end: true }, { to: '/agents', label: t.nav.partners, end: false }, { to: '/support', label: t.nav.support, end: false }, { to: '/privacy', label: t.nav.privacy, end: false }, { to: '/terms', label: t.nav.terms, end: false }].map(
+            {[{ to: '/claude', label: t.nav.claude, end: false }, { to: '/self-recharge', label: t.nav.selfRecharge, end: false }, { to: '/', label: site.name, end: true }, { to: '/agents', label: t.nav.partners, end: false }, { to: '/support', label: t.nav.support, end: false }, { to: '/privacy', label: t.nav.privacy, end: false }, { to: '/terms', label: t.nav.terms, end: false }].map(
               (link) => (
                 <NavLink
                   key={link.to}

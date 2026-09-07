@@ -18,14 +18,14 @@ export function Footer() {
         <div className="max-w-sm">
           <p className="font-display text-base font-semibold tracking-tight text-ink">{site.name}</p>
           <p className="mt-3 text-sm leading-relaxed text-muted">{t.footer.tagline}</p>
-          <div className="mt-5 flex flex-wrap items-start gap-4">
+          <div className="mt-5">
             <a
               href={`mailto:${site.support.email}`}
-              className="pt-1 text-sm text-accent transition hover:text-accent-deep"
+              className="text-sm text-accent transition hover:text-accent-deep"
             >
               {site.support.email}
             </a>
-            <figure className="w-24 shrink-0">
+            <figure className="mt-4 w-24">
               <a href="/support-wechat.png" target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-md border border-line bg-white transition hover:border-brand/50">
                 <img src="/support-wechat.png" alt={wechatSupportLabel} className="block w-full" />
               </a>

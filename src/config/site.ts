@@ -17,13 +17,13 @@ export const site = {
       label: 'ChatGPT Pro 5x',
       subtitle: '更高额度 · 质保 30 天',
       priceLabel: '¥750',
-      url: 'https://wzyp.cn/item/1t7aee',
+      url: 'https://wzyp.cn/item/cjmxxw',
     },
     pro20x: {
       label: 'ChatGPT Pro 20x',
       subtitle: '旗舰额度 · 质保 30 天',
       priceLabel: '¥1450',
-      url: 'https://wzyp.cn/item/cjmxxw',
+      url: 'https://wzyp.cn/item/1t7aee',
     },
   },
 

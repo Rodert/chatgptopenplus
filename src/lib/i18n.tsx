@@ -10,7 +10,7 @@ export const languageOptions: Array<{ value: Language; label: string }> = [
 
 const messages = {
   'zh-CN': {
-    nav: { purchase: '购买充值', claude: 'Claude 充值', blog: '博客', selfRecharge: '自助充值', help: '帮助中心', partners: '代理合作', support: '支持', recharge: '立即充值', privacy: '隐私保护', terms: '用户协议' },
+    nav: { purchase: 'ChatGPT 会员充值', claude: 'Claude 充值', blog: '博客', selfRecharge: '自助充值', help: '帮助中心', partners: '代理合作', support: '支持', recharge: '立即充值', privacy: '隐私保护', terms: '用户协议' },
     common: { backHome: '返回首页', email: '邮箱', contact: '联系我们' },
     home: {
       badge: 'CHATGPT SUBSCRIPTION SERVICE', title: 'ChatGPT 订阅服务', titleAccent: '清晰选择，安心交付',

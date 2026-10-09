@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { site, type CheckoutKey } from '../config/site'
 import { openCheckout } from '../lib/checkout'
@@ -24,9 +24,31 @@ export function OrderPage() {
     plans.includes(initialPlan as CheckoutKey) ? (initialPlan as CheckoutKey) : 'plus',
   )
   const [quantity, setQuantity] = useState(1)
+  const [showCheckoutPrompt, setShowCheckoutPrompt] = useState(false)
   const plan = site.checkout[selectedPlan]
   const total = amountFor(selectedPlan) * quantity
   const maintenanceLabel = language === 'zh-CN' ? '维护中' : language === 'ru' ? 'На обслуживании' : 'Maintenance'
+
+  useEffect(() => {
+    if (!showCheckoutPrompt) return
+
+    const previousOverflow = document.body.style.overflow
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setShowCheckoutPrompt(false)
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [showCheckoutPrompt])
+
+  function continueToCheckout() {
+    setShowCheckoutPrompt(false)
+    openCheckout(selectedPlan)
+  }
 
   return (
     <section className="min-h-[calc(100dvh-4.25rem)] bg-mint/45">
@@ -116,7 +138,7 @@ export function OrderPage() {
                 <p className="mt-2 font-display text-5xl font-semibold tracking-tight text-brand">¥{total}</p>
                 <p className="mt-3 text-sm text-muted">{plan.label} × {quantity} · {order.unit} {plan.priceLabel}</p>
               </div>
-              <button type="button" onClick={() => openCheckout(selectedPlan)} className="mt-6 w-full rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(12,166,111,0.22)] transition hover:bg-brand-deep sm:mt-0 sm:w-auto">{order.begin}</button>
+              <button type="button" onClick={() => setShowCheckoutPrompt(true)} className="mt-6 w-full rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(12,166,111,0.22)] transition hover:bg-brand-deep sm:mt-0 sm:w-auto">{order.begin}</button>
             </div>
             <p className="mt-4 text-center text-xs leading-relaxed text-muted">{order.notice}</p>
           </section>
@@ -129,9 +151,34 @@ export function OrderPage() {
             <p className="truncate text-xs text-muted sm:text-sm">{plan.label} × {quantity}</p>
             <p className="mt-0.5 font-display text-2xl font-semibold text-brand sm:text-3xl">¥{total}</p>
           </div>
-          <button type="button" onClick={() => openCheckout(selectedPlan)} className="shrink-0 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(12,166,111,0.22)] transition hover:bg-brand-deep sm:px-8 sm:py-3.5">{order.begin}</button>
+          <button type="button" onClick={() => setShowCheckoutPrompt(true)} className="shrink-0 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(12,166,111,0.22)] transition hover:bg-brand-deep sm:px-8 sm:py-3.5">{order.begin}</button>
         </div>
       </div>
+      {showCheckoutPrompt ? (
+        <div
+          className="fixed inset-0 z-50 grid place-items-center bg-ink/45 px-5 py-8 backdrop-blur-sm"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) setShowCheckoutPrompt(false)
+          }}
+        >
+          <div role="dialog" aria-modal="true" aria-labelledby="checkout-prompt-title" className="w-full max-w-lg rounded-lg border border-line bg-white p-6 shadow-[0_24px_70px_rgba(21,32,51,0.24)] sm:p-8">
+            <h2 id="checkout-prompt-title" className="font-display text-2xl font-semibold text-ink">{order.redirectTitle}</h2>
+            <ol className="mt-6 divide-y divide-line border-y border-line">
+              {order.redirectSteps.map((step, index) => (
+                <li key={step} className="flex gap-4 py-4">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand text-xs font-bold text-white">{index + 1}</span>
+                  <span className="pt-0.5 text-sm leading-6 text-ink-soft">{step}</span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <button type="button" onClick={() => setShowCheckoutPrompt(false)} className="rounded-lg border border-line bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-brand/50 hover:bg-mint/45">{order.cancel}</button>
+              <button type="button" autoFocus onClick={continueToCheckout} className="rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(12,166,111,0.20)] transition hover:bg-brand-deep">{order.continue}</button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

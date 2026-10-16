@@ -5,7 +5,7 @@ import { useI18n } from '../lib/i18n'
 import { ReviewSection } from '../components/ReviewSection'
 import { InfrastructureSection } from '../components/InfrastructureSection'
 
-const planOrder: CheckoutKey[] = ['plus', 'pro5x', 'pro20x']
+const planOrder: CheckoutKey[] = ['plus', 'pro5x', 'pro20x', 'pro500']
 
 function currentSubscriberTarget() {
   const now = new Date()
@@ -139,7 +139,7 @@ export function HomePage() {
             </div>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {planOrder.map((key) => {
               const meta = site.checkout[key]
               return (

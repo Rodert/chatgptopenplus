@@ -4,7 +4,7 @@ import { site, type CheckoutKey } from '../config/site'
 import { openCheckout } from '../lib/checkout'
 import { useI18n } from '../lib/i18n'
 
-const plans: CheckoutKey[] = ['plus', 'pro5x', 'pro20x']
+const plans: CheckoutKey[] = ['plus', 'pro5x', 'pro20x', 'pro500']
 const paymentMethods = [
   { name: '支付宝', icon: '/payment-alipay.svg' },
   { name: '微信支付', icon: '/payment-wechat.svg' },
@@ -61,13 +61,13 @@ export function OrderPage() {
           <p className="mt-3 text-sm leading-relaxed text-muted">{order.intro}</p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-4xl rounded-lg border border-line bg-white p-5 shadow-[0_18px_45px_rgba(21,70,51,0.08)] sm:p-9">
+        <div className="mx-auto mt-10 max-w-5xl rounded-lg border border-line bg-white p-5 shadow-[0_18px_45px_rgba(21,70,51,0.08)] sm:p-9">
           <section aria-labelledby="plan-heading">
             <div className="flex items-center gap-2">
               <span className="grid h-6 w-6 place-items-center rounded-full bg-brand text-xs font-bold text-white">1</span>
               <h2 id="plan-heading" className="text-base font-semibold text-ink">{order.plan}</h2>
             </div>
-            <div className="mt-5 grid gap-3 md:grid-cols-3">
+            <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {plans.map((key) => {
                 const item = site.checkout[key]
                 const selected = key === selectedPlan
@@ -81,7 +81,7 @@ export function OrderPage() {
                       selected ? 'border-brand bg-mint shadow-[inset_0_0_0_1px_var(--color-brand)]' : 'border-line bg-white hover:-translate-y-0.5 hover:border-brand/60 hover:bg-mint/45 hover:shadow-[0_10px_24px_rgba(21,70,51,0.08)]'
                     }`}
                   >
-                    <p className="font-display text-base font-semibold text-ink">{item.label}</p>
+                    <p className="whitespace-nowrap font-display text-[15px] font-semibold text-ink xl:text-base">{item.label}</p>
                     <p className="mt-1 text-sm text-muted">{item.subtitle}</p>
                     <p className="mt-6 font-display text-3xl font-semibold text-brand">{item.priceLabel}</p>
                   </button>

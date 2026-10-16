@@ -25,6 +25,12 @@ export const site = {
       priceLabel: '¥1400',
       url: 'https://wzyp.cn/item/1t7aee',
     },
+    pro500: {
+      label: 'ChatGPT Pro 500 美元',
+      subtitle: '大额充值 · 质保 30 天',
+      priceLabel: '¥3500',
+      url: 'https://wzyp.cn/item/mfu1l8',
+    },
   },
 
   claude: {

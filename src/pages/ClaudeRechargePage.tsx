@@ -1,50 +1,52 @@
 import { useI18n } from '../lib/i18n'
 import { site } from '../config/site'
 
+const claudePlanOrder = ['pro', 'fiveX', 'kyc'] as const
+
 const copy = {
   'zh-CN': {
     badge: 'CLAUDE RECHARGE',
     title: 'Claude 充值',
     accent: '独立入口，现已开放',
-    intro: 'Claude 充值使用独立页面和独立流程，不与 ChatGPT 订单混合。选择 Claude Pro 后将在合作支付页完成下单。',
+    intro: 'Claude 充值使用独立页面和独立流程，不与 ChatGPT 订单混合。选择所需套餐后将在对应的合作支付页完成下单。',
     panelLabel: 'CLAUDE',
     panelTitle: '为专注创作准备',
     panelText: '选择适合你的 Claude 订阅方案。',
     sectionLabel: 'RECHARGE OPTIONS',
     sectionTitle: 'Claude 充值入口',
-    sectionText: '选择 Claude Pro 后，将在合作支付页完成订单。实际价格与可用支付方式以该页面展示为准。',
-    productText: '适合需要更高使用额度与更完整 Claude 使用体验的用户。',
-    productAction: '开始 Claude Pro 充值',
+    sectionText: '选择套餐后，将在对应的合作支付页完成订单。实际价格、商品详情与可用支付方式以该页面展示为准。',
+    productText: { pro: 'Claude Pro 订阅充值入口。', fiveX: 'Claude 5X 套餐充值入口。', kyc: 'Claude KYC 套餐充值入口。' },
+    productAction: '前往充值',
     notes: [['独立充值页面', 'Claude 商品、价格与交付说明单独展示。'], ['合作支付', '点击后在合作支付页完成订单。'], ['订单支持', '下单后请保留订单信息，便于后续核查。']],
   },
   en: {
     badge: 'CLAUDE RECHARGE',
     title: 'Claude recharge',
     accent: 'A dedicated entry, now open',
-    intro: 'Claude recharge has its own page and flow, separate from ChatGPT orders. Select Claude Pro to continue to the partner checkout.',
+    intro: 'Claude recharge has its own page and flow, separate from ChatGPT orders. Choose a plan to continue to its partner checkout.',
     panelLabel: 'CLAUDE',
     panelTitle: 'Made for focused work',
     panelText: 'Choose the Claude plan that fits your work.',
     sectionLabel: 'RECHARGE OPTIONS',
     sectionTitle: 'Claude recharge entry',
-    sectionText: 'Select Claude Pro to continue to the partner checkout. Final pricing and available payment methods are shown there.',
-    productText: 'For users who need higher usage limits and a fuller Claude experience.',
-    productAction: 'Recharge Claude Pro',
+    sectionText: 'Choose a plan to continue to its partner checkout. Final pricing, product details, and available payment methods are shown there.',
+    productText: { pro: 'Claude Pro subscription recharge.', fiveX: 'Claude 5X plan recharge.', kyc: 'Claude KYC plan recharge.' },
+    productAction: 'Continue to recharge',
     notes: [['A dedicated page', 'Claude products, pricing, and fulfillment details are presented separately.'], ['Partner checkout', 'Complete your order on the partner checkout after continuing.'], ['Order support', 'Keep your order information for any follow-up review.']],
   },
   ru: {
     badge: 'ПОПОЛНЕНИЕ CLAUDE',
     title: 'Пополнение Claude',
     accent: 'Отдельный вход уже доступен',
-    intro: 'Для Claude создана отдельная страница и процесс, не смешанный с заказами ChatGPT. Выберите Claude Pro, чтобы перейти к оплате у партнера.',
+    intro: 'Для Claude создана отдельная страница и процесс, не смешанный с заказами ChatGPT. Выберите тариф, чтобы перейти на соответствующую страницу оплаты.',
     panelLabel: 'CLAUDE',
     panelTitle: 'Для сосредоточенной работы',
     panelText: 'Выберите подходящий тариф Claude.',
     sectionLabel: 'ВАРИАНТЫ ПОПОЛНЕНИЯ',
     sectionTitle: 'Вход для пополнения Claude',
-    sectionText: 'Выберите Claude Pro, чтобы перейти к оплате у партнера. Итоговая цена и доступные способы оплаты указаны там.',
-    productText: 'Для пользователей, которым нужны более высокие лимиты и полный доступ к Claude.',
-    productAction: 'Пополнить Claude Pro',
+    sectionText: 'Выберите тариф, чтобы перейти на соответствующую страницу оплаты. Итоговая цена, описание товара и доступные способы оплаты указаны там.',
+    productText: { pro: 'Пополнение подписки Claude Pro.', fiveX: 'Пополнение тарифа Claude 5X.', kyc: 'Пополнение тарифа Claude KYC.' },
+    productAction: 'Перейти к пополнению',
     notes: [['Отдельная страница', 'Товары Claude, цены и условия выполнения показаны отдельно.'], ['Оплата у партнера', 'После перехода заказ оформляется на странице партнера.'], ['Поддержка заказа', 'Сохраните данные заказа для последующей проверки.']],
   },
 } as const
@@ -93,12 +95,17 @@ export function ClaudeRechargePage() {
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#6f5d56]">{text.sectionText}</p>
             </div>
           </div>
-          <div className="mt-10 flex min-h-40 flex-col items-start justify-between gap-6 rounded-lg border border-[#e5ae9d] bg-[#fff7f3] p-7 sm:flex-row sm:items-end sm:p-9">
-            <div>
-              <p className="font-display text-2xl font-semibold text-[#2c2522]">{site.claude.pro.label}</p>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#6f5d56]">{text.productText}</p>
-            </div>
-            <a href={site.claude.pro.url} target="_blank" rel="noreferrer" className="shrink-0 rounded-lg bg-[#df7153] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#c9573a]">{text.productAction}</a>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {claudePlanOrder.map((key) => {
+              const plan = site.claude[key]
+              return (
+                <article key={key} className="flex min-h-[220px] flex-col rounded-lg border border-[#e5ae9d] bg-[#fff7f3] p-7 transition duration-200 hover:-translate-y-0.5 hover:border-[#df7153] hover:shadow-[0_14px_30px_rgba(83,48,38,0.10)]">
+                  <h3 className="font-display text-2xl font-semibold text-[#2c2522]">{plan.label}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#6f5d56]">{text.productText[key]}</p>
+                  <a href={plan.url} target="_blank" rel="noreferrer" className="mt-auto rounded-lg bg-[#df7153] px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#c9573a]">{text.productAction}</a>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>

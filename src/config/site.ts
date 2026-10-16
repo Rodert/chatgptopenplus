@@ -38,6 +38,14 @@ export const site = {
       label: 'Claude Pro',
       url: 'https://wzyp.cn/item/195ckl',
     },
+    fiveX: {
+      label: 'Claude 5X',
+      url: 'https://wzyp.cn/item/zgui6w',
+    },
+    kyc: {
+      label: 'Claude KYC',
+      url: 'https://wzyp.cn/item/l7d26h',
+    },
   },
 
   support: {

@@ -96,7 +96,7 @@ export function HomePage() {
             <p className="text-sm text-muted">ChatGPT Plus</p>
             <h2 className="mt-3 font-display text-2xl font-semibold text-ink">Plus 月卡 · 30 天</h2>
             <div className="mt-6 flex items-end gap-3">
-              <p className="font-display text-5xl font-semibold tracking-tight text-brand">¥135</p>
+              <p className="font-display text-5xl font-semibold tracking-tight text-brand">¥140</p>
               <p className="pb-2 text-sm text-muted">{home.standardPlan}</p>
             </div>
             <p className="mt-5 inline-flex rounded-md border border-brand/25 bg-mint px-3 py-1.5 text-sm font-medium text-brand">

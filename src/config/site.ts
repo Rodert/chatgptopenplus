@@ -10,7 +10,7 @@ export const site = {
     plus: {
       label: 'ChatGPT Plus',
       subtitle: '标准订阅 · 质保 30 天',
-      priceLabel: '¥135',
+      priceLabel: '¥140',
       url: 'https://wzyp.cn/item/mfu1l8',
     },
     pro5x: {

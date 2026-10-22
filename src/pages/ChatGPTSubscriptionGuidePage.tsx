@@ -63,6 +63,7 @@ export function ChatGPTSubscriptionGuidePage() {
               </table>
             </div>
             <p className="mt-5">如果你无法描述“升级后具体解决哪个限制”，先不要买更高档。高价格本身不会自动提高提问质量，也不能代替清晰的任务拆解。</p>
+            <p className="mt-4 text-sm"><Link to="/blog/chatgpt-plus-vs-pro-plans" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：ChatGPT Plus 与 Pro 100/200/500 套餐对比指南</Link></p>
           </section>
 
           <section id="subscribe-and-renew" className="scroll-mt-24">
@@ -76,6 +77,7 @@ export function ChatGPTSubscriptionGuidePage() {
               <li>准备停止续费时，提前在原购买渠道取消自动续订；取消入口名称可能随界面更新而变化。</li>
             </ol>
             <p className="mt-5">通过本站购买时，先在<Link to="/order" className="font-semibold text-brand transition hover:text-brand-deep">套餐页面</Link>选择方案，再进入合作支付页。请以支付页展示的商品、金额和交付说明为准。</p>
+            <p className="mt-4 text-sm"><Link to="/blog/chatgpt-subscription-renewal-status" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：开通、续费与订阅状态检查教程</Link></p>
           </section>
 
           <section id="plus-vs-api" className="scroll-mt-24">
@@ -86,6 +88,7 @@ export function ChatGPTSubscriptionGuidePage() {
               <div className="bg-white p-5"><h3 className="font-display text-lg font-semibold text-ink">选择 API</h3><p className="mt-2 text-sm leading-7">你要让自己的程序、工作流或服务器自动调用模型。</p></div>
             </div>
             <p className="mt-5">开通 Plus 不代表获得一笔可用于 API 的余额；拥有 API Key 也不等于获得 ChatGPT Plus。少数功能可能同时出现在不同产品中，但账单、额度和入口仍要分别确认。</p>
+            <p className="mt-4 text-sm"><Link to="/blog/chatgpt-plus-vs-openai-api" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：ChatGPT Plus 和 OpenAI API 的完整区别</Link></p>
           </section>
 
           <section id="payment-failed" className="scroll-mt-24">
@@ -99,6 +102,7 @@ export function ChatGPTSubscriptionGuidePage() {
               <li><strong className="text-ink">状态层：</strong>交付后仍未生效，先退出并重新登录，再确认是不是登录了另一个账号。</li>
             </ul>
             <p className="mt-5">本站订单问题可通过<Link to="/support" className="font-semibold text-brand transition hover:text-brand-deep">支持页面</Link>联系。邮件中提供订单号和问题描述即可，不要发送密码、验证码或完整会话凭据。</p>
+            <p className="mt-4 text-sm"><Link to="/blog/chatgpt-payment-failed" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：支付失败与扣款未生效排查指南</Link></p>
           </section>
 
           <section id="choose-claude-plan" className="scroll-mt-24">
@@ -110,6 +114,7 @@ export function ChatGPTSubscriptionGuidePage() {
               <li className="border-t border-line pt-4"><strong className="text-ink">Claude KYC：</strong>涉及身份验证或特定交付条件时，先确认需要提交的信息、处理主体和隐私边界，再决定是否购买。</li>
             </ul>
             <p className="mt-5"><Link to="/claude" className="font-semibold text-brand transition hover:text-brand-deep">Claude 充值页</Link>将三种商品分开呈现，避免与 ChatGPT 套餐混淆。</p>
+            <p className="mt-4 text-sm"><Link to="/blog/claude-pro-5x-kyc-guide" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：Claude Pro、5X 与 KYC 的选择边界</Link></p>
           </section>
 
           <section id="chatgpt-vs-claude" className="scroll-mt-24">
@@ -122,6 +127,7 @@ export function ChatGPTSubscriptionGuidePage() {
               <li>如果两边都只是偶尔用，不必同时订阅；先购买更能覆盖主要工作流的一边。</li>
             </ul>
             <p className="mt-5">真正的选择标准不是“谁永远更强”，而是<strong className="text-ink">谁能在你的固定任务里更稳定地减少时间和返工</strong>。</p>
+            <p className="mt-4 text-sm"><Link to="/blog/chatgpt-vs-claude" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：用真实任务选择 ChatGPT 或 Claude</Link></p>
           </section>
 
           <section id="safety-checklist" className="scroll-mt-24">
@@ -136,6 +142,7 @@ export function ChatGPTSubscriptionGuidePage() {
                 <li><strong className="text-ink">KYC 与隐私：</strong>若商品涉及身份验证，先确认收集哪些信息、用途和处理方；无法确认时不要提交。</li>
               </ul>
             </div>
+            <p className="mt-4 text-sm"><Link to="/blog/third-party-ai-recharge-safety" className="font-semibold text-brand transition hover:text-brand-deep">详细阅读：第三方 AI 充值安全检查清单与 FAQ</Link></p>
           </section>
 
           <section>

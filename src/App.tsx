@@ -5,6 +5,7 @@ import { ClaudeRechargePage } from './pages/ClaudeRechargePage'
 import { BlogPage } from './pages/BlogPage'
 import { ChatGPTPlusWorthItPage } from './pages/ChatGPTPlusWorthItPage'
 import { ChatGPTSubscriptionGuidePage } from './pages/ChatGPTSubscriptionGuidePage'
+import { GuideArticlePage } from './pages/GuideArticlePage'
 import { HomePage } from './pages/HomePage'
 import { HelpCenterPage } from './pages/HelpCenterPage'
 import { OrderPage } from './pages/OrderPage'
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: 'blog', element: <BlogPage /> },
       { path: 'blog/chatgpt-plus-subscription-guide', element: <ChatGPTSubscriptionGuidePage /> },
       { path: 'blog/chatgpt-plus-worth-it', element: <ChatGPTPlusWorthItPage /> },
+      { path: 'blog/:slug', element: <GuideArticlePage /> },
       { path: 'help', element: <HelpCenterPage /> },
       { path: 'order', element: <OrderPage /> },
       { path: 'self-recharge', element: <SelfRechargePage /> },

@@ -17,14 +17,18 @@ export function Seo() {
   const { pathname } = useLocation()
   const { language, t } = useI18n()
   const isBlog = pathname === '/blog'
-  const isBlogArticle = pathname === '/blog/chatgpt-plus-worth-it'
+  const isSubscriptionGuide = pathname === '/blog/chatgpt-plus-subscription-guide'
+  const isWorthItArticle = pathname === '/blog/chatgpt-plus-worth-it'
+  const isBlogArticle = isSubscriptionGuide || isWorthItArticle
   const isBlogContent = isBlog || isBlogArticle
   const socialImage = `https://${site.domain}/og-image.png`
   const route = pathname === '/order' ? t.order : pathname === '/support' ? t.support : pathname === '/agents' ? t.agents : pathname === '/privacy' ? t.privacy : pathname === '/terms' ? t.terms : t.home
-  const title = isBlogArticle ? `ChatGPT Plus 到底值不值得开？免费版、Plus 与 API 的区别 | ${site.name}`
+  const title = isSubscriptionGuide ? `ChatGPT Plus 怎么开通？套餐、API、Claude 与支付指南 | ${site.name}`
+    : isWorthItArticle ? `ChatGPT Plus 到底值不值得开？免费版、Plus 与 API 的区别 | ${site.name}`
     : isBlog ? `ChatGPT 使用指南与订阅说明 | ${site.name}`
       : pathname === '/' ? `${t.home.title} | ${site.name}` : pathname === '/claude' ? `${t.nav.claude} | ${site.name}` : pathname === '/self-recharge' ? `${t.nav.selfRecharge} | ${site.name}` : pathname === '/help' ? `${t.nav.help} | ${site.name}` : `${route.title} | ${site.name}`
-  const description = isBlogArticle ? '免费版够不够用、ChatGPT Plus 真正的价值、适合人群，以及 Plus 与 API 的区别，一篇讲清楚。'
+  const description = isSubscriptionGuide ? 'ChatGPT Plus 与 Pro 怎么选、如何开通续费、Plus 和 API 的区别、支付失败排查、Claude 套餐选择及第三方充值安全事项。'
+    : isWorthItArticle ? '免费版够不够用、ChatGPT Plus 真正的价值、适合人群，以及 Plus 与 API 的区别，一篇讲清楚。'
     : isBlog ? '围绕 ChatGPT 的日常使用、订阅选择与开通注意事项，整理清楚、可核对的内容。'
     : pathname === '/' ? t.home.intro
     : pathname === '/order' || pathname === '/self-recharge' || pathname === '/help' ? t.order.intro
@@ -51,9 +55,16 @@ export function Seo() {
     setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', socialImage)
     setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image')
 
+    const articleDate = isSubscriptionGuide ? '2026-10-22' : '2026-09-04'
     const publishedTime = document.head.querySelector<HTMLMetaElement>('meta[property="article:published_time"]')
-    if (isBlogArticle) setMeta('meta[property="article:published_time"]', 'property', 'article:published_time', '2026-09-04')
-    else publishedTime?.remove()
+    const modifiedTime = document.head.querySelector<HTMLMetaElement>('meta[property="article:modified_time"]')
+    if (isBlogArticle) {
+      setMeta('meta[property="article:published_time"]', 'property', 'article:published_time', articleDate)
+      setMeta('meta[property="article:modified_time"]', 'property', 'article:modified_time', articleDate)
+    } else {
+      publishedTime?.remove()
+      modifiedTime?.remove()
+    }
 
     let canonicalLink = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
     if (!canonicalLink) { canonicalLink = document.createElement('link'); canonicalLink.rel = 'canonical'; document.head.appendChild(canonicalLink) }
@@ -73,8 +84,34 @@ export function Seo() {
 
     let schema = document.head.querySelector<HTMLScriptElement>('#website-schema')
     if (!schema) { schema = document.createElement('script'); schema.id = 'website-schema'; schema.type = 'application/ld+json'; document.head.appendChild(schema) }
-    schema.textContent = JSON.stringify(isBlogArticle
+    schema.textContent = JSON.stringify(isSubscriptionGuide
       ? {
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'BlogPosting',
+              headline: 'ChatGPT Plus 怎么开通？套餐区别、API、Claude 与支付问题完整指南',
+              description,
+              datePublished: '2026-10-22',
+              dateModified: '2026-10-22',
+              mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+              image: socialImage,
+              author: { '@type': 'Organization', name: site.name },
+              publisher: { '@type': 'Organization', name: site.name },
+              inLanguage: 'zh-CN',
+            },
+            {
+              '@type': 'FAQPage',
+              mainEntity: [
+                ['ChatGPT Plus 开通后可以使用 API 吗？', '不能直接抵扣 API 调用费用。ChatGPT 订阅与 OpenAI API 是两套计费体系，API Key 的用量需要按 API 价格单独结算。'],
+                ['ChatGPT Plus、Pro 100、Pro 200 和 Pro 500 怎么选？', '先按真实使用频率选择。偶尔对话先用免费版；日常高频使用可看 Plus；只有在 Plus 的额度或速度持续影响工作时，再比较 Pro 档位。'],
+                ['第三方充值需要提供 ChatGPT 密码吗？', '不应提供。密码、短信验证码、邮箱验证码、API Key 和会话令牌都属于敏感凭据。'],
+              ].map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })),
+            },
+          ],
+        }
+      : isWorthItArticle
+        ? {
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
           headline: 'ChatGPT Plus 到底值不值得开？用了这么久，我觉得很多人一开始就搞错了',
@@ -87,8 +124,10 @@ export function Seo() {
           publisher: { '@type': 'Organization', name: site.name },
           inLanguage: 'zh-CN',
         }
-      : { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: canonical, inLanguage: language })
-  }, [canonical, canonicalPath, description, isBlogArticle, isBlogContent, language, socialImage, title])
+        : isBlog
+          ? { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'ChatGPT 使用指南与订阅说明', url: canonical, inLanguage: 'zh-CN' }
+          : { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: canonical, inLanguage: language })
+  }, [canonical, canonicalPath, description, isBlog, isBlogArticle, isBlogContent, isSubscriptionGuide, isWorthItArticle, language, socialImage, title])
 
   return null
 }

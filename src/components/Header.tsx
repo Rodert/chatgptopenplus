@@ -30,7 +30,7 @@ export function Header() {
           </select>
           <NavLink
             to="/claude"
-            className="rounded-lg bg-[#df7153] px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-[#c9573a]"
+            className="whitespace-nowrap rounded-lg bg-[#df7153] px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-[#c9573a]"
           >
             {t.nav.claude}
           </NavLink>

@@ -93,8 +93,8 @@ export function ChatGPTPlusWorthItPage() {
           </div>
 
           <p className="text-sm leading-7 text-muted">不过第三方订阅、代充或类似服务，都建议大家先确认清楚<strong>账号归属、支付方式、续费机制、售后规则以及相关风险</strong>，不要因为着急开会员就忽略账号安全。</p>
-          <p>后面如果大家感兴趣，我准备再单独写一篇：<strong>《ChatGPT Plus 常见的几种开通方式，我实际对比了一遍》</strong>。这个里面其实还有不少坑，尤其是很多第一次订阅的人最容易踩。</p>
-          <p>如果这篇点赞多，我再接着写。</p>
+          <p>如果你已经确定需要订阅，可以继续阅读：</p>
+          <p><Link to="/blog/chatgpt-plus-subscription-guide" className="font-semibold text-brand transition hover:text-brand-deep">《ChatGPT Plus 怎么开通？套餐区别、API、Claude 与支付问题完整指南》</Link>。里面整理了套餐选择、支付失败排查、续费、API 区别和第三方充值安全清单。</p>
         </div>
       </div>
     </article>

@@ -61,6 +61,38 @@ const pages = [
     schema: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'ChatGPT 使用指南与订阅说明', url: `${siteUrl}/blog`, inLanguage: 'zh-CN' },
   },
   {
+    path: '/blog/chatgpt-plus-subscription-guide',
+    title: 'ChatGPT Plus 怎么开通？套餐、API、Claude 与支付指南 | ChatGPT * OpenPlus',
+    description: 'ChatGPT Plus 与 Pro 怎么选、如何开通续费、Plus 和 API 的区别、支付失败排查、Claude 套餐选择及第三方充值安全事项。',
+    type: 'article',
+    publishedAt: '2026-10-22',
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          headline: 'ChatGPT Plus 怎么开通？套餐区别、API、Claude 与支付问题完整指南',
+          description: 'ChatGPT Plus 与 Pro 怎么选、如何开通续费、Plus 和 API 的区别、支付失败排查、Claude 套餐选择及第三方充值安全事项。',
+          datePublished: '2026-10-22',
+          dateModified: '2026-10-22',
+          mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/blog/chatgpt-plus-subscription-guide` },
+          image: imageUrl,
+          author: { '@type': 'Organization', name: 'ChatGPT * OpenPlus' },
+          publisher: { '@type': 'Organization', name: 'ChatGPT * OpenPlus' },
+          inLanguage: 'zh-CN',
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            ['ChatGPT Plus 开通后可以使用 API 吗？', '不能直接抵扣 API 调用费用。ChatGPT 订阅与 OpenAI API 是两套计费体系，API Key 的用量需要按 API 价格单独结算。'],
+            ['ChatGPT Plus、Pro 100、Pro 200 和 Pro 500 怎么选？', '先按真实使用频率选择。偶尔对话先用免费版；日常高频使用可看 Plus；只有在 Plus 的额度或速度持续影响工作时，再比较 Pro 档位。'],
+            ['第三方充值需要提供 ChatGPT 密码吗？', '不应提供。密码、短信验证码、邮箱验证码、API Key 和会话令牌都属于敏感凭据。'],
+          ].map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })),
+        },
+      ],
+    },
+  },
+  {
     path: '/blog/chatgpt-plus-worth-it',
     title: 'ChatGPT Plus 到底值不值得开？免费版、Plus 与 API 的区别 | ChatGPT * OpenPlus',
     description: '免费版够不够用、ChatGPT Plus 真正的价值、适合人群，以及 Plus 与 API 的区别，一篇讲清楚。',
